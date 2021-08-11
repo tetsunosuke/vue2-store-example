@@ -33,9 +33,21 @@
 export default {
 data : function() {
   return {
-    texts:[["",""]],
+    //texts:[["",""]],
     errors : {}
   }
+},
+computed: {
+   texts: {
+      get () { 
+          console.log("get", this.$store.state.text_change);
+          if (this.$store.state.text_change) {
+            return this.$store.state.text_change
+          } else {
+              return [["",""]];
+          }
+      },
+    },
 },
   methods: {
     addInput() {
@@ -44,39 +56,12 @@ data : function() {
     removeInput(idx1) {
         this.texts.splice(idx1, 1);
         let store = this.$store;
-        store.commit("people/settextchange", this.texts);
+        store.commit("settextchange", this.texts);
     },
     text_change() {
-
         let store = this.$store;
-        store.commit("people/settextchange", this.texts);
-
-        // 配列をオブジェクトに変換し、組だけまとめたあと配列として再度
-        let map = new Map(JSON.parse(JSON.stringify(store.state.people.sch)));
-        let setArray = []
-        let feeArray = []
-
-        map.forEach(function (value, key) {
-            setArray.push(key)
-            feeArray.push(value)
-        });
-        let setArrayParse = JSON.parse(JSON.stringify(setArray));
-        let feeArrayParse = JSON.parse(JSON.stringify(feeArray));
-        let feeArrayParseNumber = JSON.parse(JSON.stringify(feeArray)).map(Number);
-
-        var feeArrayCalc = feeArrayParseNumber.reduce(function(a,b){
-            return a + b;
-        });
-
-        // 組をここでコミット
-
-        store.commit("people/set_change",setArrayParse)
-
-        //人数をコミット
-        store.commit("people/fee_change",feeArrayParse)
-
-        //合計人数をコミット
-        store.commit("people/calc_fee_change",feeArrayCalc)
+        console.log("Storeに保存させるためにstore.commitを呼びます", this.texts);
+        store.commit("settextchange", this.texts);
     }
   }
 }

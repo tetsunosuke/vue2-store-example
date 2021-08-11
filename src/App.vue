@@ -1,16 +1,19 @@
 <template>
   <div id="app">
-    <sample />
+    <!--<sample />-->
+    <router-link to="/"> HOME </router-link>
+    <router-link to="/sample"> Sample</router-link>
+    <router-view></router-view>
+
   </div>
 </template>
 
 <script>
-import sample  from './components/sample.vue'
 
 export default {
   name: 'App',
   components: {
-    sample
+    //sample
   }
 }
 </script>
