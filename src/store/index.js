@@ -18,7 +18,7 @@ export default new Vuex.Store({
         sch: state => state.sch,
         sch_set: state => state.sch_set,
         sch_fee: state => state.sch_fee,
-        settextchange: state => state.text_change,
+        text_change: state => state.text_change,
     },
     actions: {
         get_sch: function({ commit }, sch) {

@@ -41,6 +41,7 @@ computed: {
    texts: {
       get () { 
           console.log("get", this.$store.state.text_change);
+          console.log("get by getter", this.$store.getters.text_change);
           if (this.$store.state.text_change) {
             return this.$store.state.text_change
           } else {
